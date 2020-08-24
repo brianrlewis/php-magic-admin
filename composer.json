@@ -1,0 +1,21 @@
+{
+    "name": "brianrlewis/magic-admin-sdk",
+    "description": "Provides access to Fortmatic magic.link admin-sdk abilities",
+    "type": "library",
+    "require": {
+        "simplito/elliptic-php": "^1.0",
+        "kornrunner/keccak": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdminSDK\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian Lewis",
+            "email": "brlewis23@gmail.com"
+        }
+    ]
+}

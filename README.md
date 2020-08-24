@@ -1,0 +1,1 @@
+# php-magic-admin-sdk
