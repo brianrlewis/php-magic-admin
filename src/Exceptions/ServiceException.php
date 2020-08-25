@@ -8,7 +8,7 @@ class ServiceException extends MagicAdminSDKException
     {
         $message = 'A service error occurred while communicating with the Magic API';
         if ($additionalMessage) {
-            $message .= "(Message: $additionalMessage)";
+            $message .= " (Message: $additionalMessage)";
         }
 
         parent::__construct($message);

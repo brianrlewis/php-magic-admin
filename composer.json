@@ -16,7 +16,7 @@
     "license": "MIT",
     "scripts": {
         "php-fix": [
-            "sudo php-cs-fixer fix --config=.php_cs ."
+            "php-cs-fixer fix"
         ]
     },
     "authors": [
