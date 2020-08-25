@@ -5,7 +5,7 @@ namespace AdminSDK\Modules;
 use AdminSDK\Exceptions\ExpectedBearerStringException;
 use AdminSDK\Modules\Core\BaseModule;
 
-class Utils extends BaseModule
+class UtilsModule extends BaseModule
 {
     /**
      * Parse a raw DID Token from the given Authorization header.

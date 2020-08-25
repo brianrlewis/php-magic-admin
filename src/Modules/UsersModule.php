@@ -8,7 +8,7 @@ use AdminSDK\Types\MagicUserMetadata;
 use AdminSDK\Utils\Issuer;
 use AdminSDK\Utils\Rest;
 
-class Users extends BaseModule
+class UsersModule extends BaseModule
 {
     public function logoutByIssuer(string $issuer): void
     {

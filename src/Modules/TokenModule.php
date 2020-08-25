@@ -14,7 +14,7 @@ use AdminSDK\Utils\Eth;
 use AdminSDK\Utils\Issuer;
 use Throwable;
 
-class Token extends BaseModule
+class TokenModule extends BaseModule
 {
     public function validate(string $DIDToken, string $attachment = 'none')
     {
@@ -47,7 +47,7 @@ class Token extends BaseModule
         $nbfLeeway = 300; // 5 min grace period
 
         // Assert the token is not expired
-        if ($parsedClaim['ext'] < $timeSecs) {
+        if ($parsedClaim->ext < $timeSecs) {
             throw new TokenExpiredException;
         }
 
