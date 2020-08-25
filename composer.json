@@ -1,7 +1,8 @@
 {
     "name": "brianrlewis/magic-admin",
-    "description": "Package is under development",
+    "description": "Unofficial implementation of Magic Admin SDK specification",
     "type": "library",
+    "keywords": ["magic", "link", "fortmatic", "admin", "api", "sdk"],
     "require": {
         "php": ">=7.1.0",
         "simplito/elliptic-php": "^1.0",
@@ -13,6 +14,7 @@
             "BrianRLewis\\MagicAdmin\\": "src"
         }
     },
+    "homepage":"https://github.com/brianrlewis/php-magic-admin",
     "license": "MIT",
     "scripts": {
         "php-fix": [
