@@ -1,11 +1,11 @@
 <?php
 
-namespace AdminSDK\Support;
+namespace AdminSDK\Utils;
 
 use Elliptic\EC;
 use kornrunner\Keccak;
 
-class Util
+class Eth
 {
     public static function ecRecover(string $message, string $signature)
     {
@@ -21,26 +21,6 @@ class Util
         $ec = new EC('secp256k1');
         $pubkey = $ec->recoverPubKey($hash, $sign, $recid);
 
-        return static::pubKeyToAddress($pubkey);
-    }
-
-    public static function pubKeyToAddress($pubkey)
-    {
         return '0x'.substr(Keccak::hash(substr(hex2bin($pubkey->encode('hex')), 1), 256), 24);
-    }
-
-    public static function parsePublicAddressFromIssuer(string $issuer): string
-    {
-        $a = explode(':', $issuer);
-        if (isset($a[2])) {
-            return strtolower($a[2]);
-        } else {
-            return '';
-        }
-    }
-
-    public static function generateIssuerFromPublicAddress(string $publicAddress, string $method = 'ethr'): string
-    {
-        return "did:$method:$publicAddress";
     }
 }

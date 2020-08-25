@@ -4,8 +4,8 @@ namespace AdminSDK\Modules;
 
 use AdminSDK\Exceptions\ApiKeyMissingException;
 use AdminSDK\Modules\Core\BaseModule;
-use AdminSDK\Support\Http;
-use AdminSDK\Support\Util;
+use AdminSDK\Utils\Issuer;
+use AdminSDK\Utils\Rest;
 
 class Users extends BaseModule
 {
@@ -15,7 +15,7 @@ class Users extends BaseModule
             throw new ApiKeyMissingException;
         }
 
-        Http::post(
+        Rest::post(
             $this->sdk->apiBaseUrl.'/v2/admin/auth/user/logout',
             $this->sdk->secretApiKey,
             ['issuer' => $issuer]
@@ -24,7 +24,7 @@ class Users extends BaseModule
 
     public function logoutByPublicAddress(string $publicAddress): void
     {
-        $issuer = Util::generateIssuerFromPublicAddress($publicAddress);
+        $issuer = Issuer::generateIssuerFromPublicAddress($publicAddress);
         $this->logoutByIssuer($issuer);
     }
 
@@ -40,7 +40,7 @@ class Users extends BaseModule
             throw new ApiKeyMissingException;
         }
 
-        $data = Http::get(
+        $data = Rest::get(
             $this->sdk->apiBaseUrl.'/v1/admin/auth/user/get',
             $this->sdk->secretApiKey,
             ['issuer' => $issuer]
@@ -61,7 +61,7 @@ class Users extends BaseModule
 
     public function getMetadataByPublicAddress(string $publicAddress): array
     {
-        $issuer = Util::generateIssuerFromPublicAddress($publicAddress);
+        $issuer = Issuer::generateIssuerFromPublicAddress($publicAddress);
         return $this->getMetadataByIssuer($issuer);
     }
 }

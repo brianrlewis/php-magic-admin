@@ -8,7 +8,9 @@ use AdminSDK\Exceptions\MalformedTokenException;
 use AdminSDK\Exceptions\TokenCannotBeUsedYetException;
 use AdminSDK\Exceptions\TokenExpiredException;
 use AdminSDK\Modules\Core\BaseModule;
-use AdminSDK\Support\Util;
+use AdminSDK\Utils\DidT;
+use AdminSDK\Utils\Eth;
+use AdminSDK\Utils\Issuer;
 use Throwable;
 
 class Token extends BaseModule
@@ -16,20 +18,20 @@ class Token extends BaseModule
     public function validate(string $DIDToken, string $attachment = 'none')
     {
         try {
-            $tokenParseResult = $this->parseDIDToken($DIDToken);
+            $tokenParseResult = DidT::parseDIDToken($DIDToken);
             [$proof, $claim] = $tokenParseResult['raw'];
             $parsedClaim = $tokenParseResult['withParsedClaim'][1];
-            $claimedIssuer = Util::parsePublicAddressFromIssuer($parsedClaim['iss']);
+            $claimedIssuer = Issuer::parsePublicAddressFromIssuer($parsedClaim['iss']);
         } catch (Throwable $e) {
             throw new MalformedTokenException;
         }
 
         try {
             // Recover the token signer
-            $tokenSigner = strtolower(Util::ecRecover($claim, $proof));
+            $tokenSigner = strtolower(Eth::ecRecover($claim, $proof));
 
             // Recover the attachment signer
-            $attachmentSigner = strtolower(Util::ecRecover($attachment, $parsedClaim['add']));
+            $attachmentSigner = strtolower(Eth::ecRecover($attachment, $parsedClaim['add']));
         } catch (Throwable $e) {
             throw new FailedRecoveringProofError;
         }
@@ -53,37 +55,9 @@ class Token extends BaseModule
         }
     }
 
-    public function parseDIDToken(string $DIDToken): array
-    {
-        [$proof, $claim] = json_decode(base64_decode($DIDToken));
-        $parsedClaim = json_decode($claim, true);
-        if ($this->isDIDTClaim($parsedClaim)) {
-            return [
-                'raw' =>  [$proof, $claim],
-                'withParsedClaim' => [$proof, $parsedClaim],
-            ];
-        } else {
-            throw new MalformedTokenException;
-        }
-    }
-
-    public function isDIDTClaim($value): string
-    {
-        return
-            is_array($value) &&
-            isset($value['iat']) &&
-            isset($value['ext']) &&
-            isset($value['iss']) &&
-            isset($value['sub']) &&
-            isset($value['aud']) &&
-            isset($value['nbf']) &&
-            isset($value['tid']) &&
-            isset($value['add']);
-    }
-
     public function decode(string $DIDToken): array
     {
-        $parsedToken = $this->parseDIDToken($DIDToken);
+        $parsedToken = DidT::parseDIDToken($DIDToken);
         return $parsedToken['withParsedClaim'];
     }
 

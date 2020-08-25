@@ -1,13 +1,13 @@
 <?php
 
-namespace AdminSDK\Support;
+namespace AdminSDK\Utils;
 
 use AdminSDK\Exceptions\ServiceException;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
-class Http
+class Rest
 {
     public static function sendRequest(string $url, string $method, array $options = []): array
     {
