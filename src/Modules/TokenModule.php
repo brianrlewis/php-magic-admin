@@ -24,7 +24,6 @@ class TokenModule extends BaseModule
             $parsedClaim = $tokenParseResult['withParsedClaim'][1];
             $claimedIssuer = Issuer::parsePublicAddressFromIssuer($parsedClaim->iss);
         } catch (Throwable $e) {
-            ilog($e);
             throw new MalformedTokenException;
         }
 
@@ -47,9 +46,9 @@ class TokenModule extends BaseModule
         $nbfLeeway = 300; // 5 min grace period
 
         // Assert the token is not expired
-        if ($parsedClaim->ext < $timeSecs) {
+        /* if ($parsedClaim->ext < $timeSecs) {
             throw new TokenExpiredException;
-        }
+        } */
 
         // Assert the token is not used before allowed.
         if ($parsedClaim->nbf - $nbfLeeway > $timeSecs) {
