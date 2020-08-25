@@ -1,17 +1,24 @@
 {
     "name": "brianrlewis/magic-admin-sdk",
-    "description": "Provides access to Fortmatic magic.link admin-sdk abilities",
+    "description": "Package is under development",
     "type": "library",
     "require": {
+        "php": ">=7.1.0",
         "simplito/elliptic-php": "^1.0",
-        "kornrunner/keccak": "^1.0"
+        "kornrunner/keccak": "^1.0",
+        "guzzlehttp/guzzle": "^6.3.1|^7.0"
     },
     "autoload": {
         "psr-4": {
-            "AdminSDK\\": "src/"
+            "AdminSDK\\": "src"
         }
     },
     "license": "MIT",
+    "scripts": {
+        "php-fix": [
+            "sudo php-cs-fixer fix --config=.php_cs ."
+        ]
+    },
     "authors": [
         {
             "name": "Brian Lewis",
