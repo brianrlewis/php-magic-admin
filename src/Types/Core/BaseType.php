@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminSDK\Types\Core;
+namespace BrianRLewis\MagicAdmin\Types\Core;
 
 class BaseType
 {

@@ -1,5 +1,5 @@
 {
-    "name": "brianrlewis/magic-admin-sdk",
+    "name": "brianrlewis/magic-admin",
     "description": "Package is under development",
     "type": "library",
     "require": {
@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AdminSDK\\": "src"
+            "BrianRLewis\\MagicAdmin\\": "src"
         }
     },
     "license": "MIT",

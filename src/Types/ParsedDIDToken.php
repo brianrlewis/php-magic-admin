@@ -1,8 +1,8 @@
 <?php
 
-namespace AdminSDK\Types;
+namespace BrianRLewis\MagicAdmin\Types;
 
-use AdminSDK\Types\Core\BaseType;
+use BrianRLewis\MagicAdmin\Types\Core\BaseType;
 use ArrayAccess;
 
 class ParsedDIDToken extends BaseType implements ArrayAccess

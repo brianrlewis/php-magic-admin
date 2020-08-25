@@ -1,8 +1,8 @@
 <?php
 
-namespace AdminSDK\Modules\Core;
+namespace BrianRLewis\MagicAdmin\Modules\Core;
 
-use AdminSDK\Magic;
+use BrianRLewis\MagicAdmin\Magic;
 
 class BaseModule
 {

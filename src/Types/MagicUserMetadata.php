@@ -1,8 +1,8 @@
 <?php
 
-namespace AdminSDK\Types;
+namespace BrianRLewis\MagicAdmin\Types;
 
-use AdminSDK\Types\Core\BaseType;
+use BrianRLewis\MagicAdmin\Types\Core\BaseType;
 
 class MagicUserMetadata extends BaseType
 {

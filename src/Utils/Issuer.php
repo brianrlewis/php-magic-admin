@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminSDK\Utils;
+namespace BrianRLewis\MagicAdmin\Utils;
 
 class Issuer
 {

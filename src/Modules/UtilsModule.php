@@ -1,9 +1,9 @@
 <?php
 
-namespace AdminSDK\Modules;
+namespace BrianRLewis\MagicAdmin\Modules;
 
-use AdminSDK\Exceptions\ExpectedBearerStringException;
-use AdminSDK\Modules\Core\BaseModule;
+use BrianRLewis\MagicAdmin\Exceptions\ExpectedBearerStringException;
+use BrianRLewis\MagicAdmin\Modules\Core\BaseModule;
 
 class UtilsModule extends BaseModule
 {

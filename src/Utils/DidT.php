@@ -1,10 +1,10 @@
 <?php
 
-namespace AdminSDK\Utils;
+namespace BrianRLewis\MagicAdmin\Utils;
 
-use AdminSDK\Exceptions\MalformedTokenException;
-use AdminSDK\Types\Claim;
-use AdminSDK\Types\ParsedDIDToken;
+use BrianRLewis\MagicAdmin\Exceptions\MalformedTokenException;
+use BrianRLewis\MagicAdmin\Types\Claim;
+use BrianRLewis\MagicAdmin\Types\ParsedDIDToken;
 
 class DidT
 {

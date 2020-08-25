@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminSDK\Utils;
+namespace BrianRLewis\MagicAdmin\Utils;
 
 use Elliptic\EC;
 use kornrunner\Keccak;

@@ -1,8 +1,8 @@
 <?php
 
-namespace AdminSDK\Utils;
+namespace BrianRLewis\MagicAdmin\Utils;
 
-use AdminSDK\Exceptions\ServiceException;
+use BrianRLewis\MagicAdmin\Exceptions\ServiceException;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

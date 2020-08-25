@@ -1,12 +1,12 @@
 <?php
 
-namespace AdminSDK\Modules;
+namespace BrianRLewis\MagicAdmin\Modules;
 
-use AdminSDK\Exceptions\ApiKeyMissingException;
-use AdminSDK\Modules\Core\BaseModule;
-use AdminSDK\Types\MagicUserMetadata;
-use AdminSDK\Utils\Issuer;
-use AdminSDK\Utils\Rest;
+use BrianRLewis\MagicAdmin\Exceptions\ApiKeyMissingException;
+use BrianRLewis\MagicAdmin\Modules\Core\BaseModule;
+use BrianRLewis\MagicAdmin\Types\MagicUserMetadata;
+use BrianRLewis\MagicAdmin\Utils\Issuer;
+use BrianRLewis\MagicAdmin\Utils\Rest;
 
 class UsersModule extends BaseModule
 {

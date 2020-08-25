@@ -1,17 +1,17 @@
 <?php
 
-namespace AdminSDK\Modules;
+namespace BrianRLewis\MagicAdmin\Modules;
 
-use AdminSDK\Exceptions\FailedRecoveringProofError;
-use AdminSDK\Exceptions\IncorrectSignerAddressException;
-use AdminSDK\Exceptions\MalformedTokenException;
-use AdminSDK\Exceptions\TokenCannotBeUsedYetException;
-use AdminSDK\Exceptions\TokenExpiredException;
-use AdminSDK\Modules\Core\BaseModule;
-use AdminSDK\Types\ParsedDIDToken;
-use AdminSDK\Utils\DidT;
-use AdminSDK\Utils\Eth;
-use AdminSDK\Utils\Issuer;
+use BrianRLewis\MagicAdmin\Exceptions\FailedRecoveringProofError;
+use BrianRLewis\MagicAdmin\Exceptions\IncorrectSignerAddressException;
+use BrianRLewis\MagicAdmin\Exceptions\MalformedTokenException;
+use BrianRLewis\MagicAdmin\Exceptions\TokenCannotBeUsedYetException;
+use BrianRLewis\MagicAdmin\Exceptions\TokenExpiredException;
+use BrianRLewis\MagicAdmin\Modules\Core\BaseModule;
+use BrianRLewis\MagicAdmin\Types\ParsedDIDToken;
+use BrianRLewis\MagicAdmin\Utils\DidT;
+use BrianRLewis\MagicAdmin\Utils\Eth;
+use BrianRLewis\MagicAdmin\Utils\Issuer;
 use Throwable;
 
 class TokenModule extends BaseModule
@@ -46,9 +46,9 @@ class TokenModule extends BaseModule
         $nbfLeeway = 300; // 5 min grace period
 
         // Assert the token is not expired
-        /* if ($parsedClaim->ext < $timeSecs) {
+        if ($parsedClaim->ext < $timeSecs) {
             throw new TokenExpiredException;
-        } */
+        }
 
         // Assert the token is not used before allowed.
         if ($parsedClaim->nbf - $nbfLeeway > $timeSecs) {

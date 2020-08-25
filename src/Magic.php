@@ -1,10 +1,10 @@
 <?php
 
-namespace AdminSDK;
+namespace BrianRLewis\MagicAdmin;
 
-use AdminSDK\Modules\TokenModule;
-use AdminSDK\Modules\UsersModule;
-use AdminSDK\Modules\UtilsModule;
+use BrianRLewis\MagicAdmin\Modules\TokenModule;
+use BrianRLewis\MagicAdmin\Modules\UsersModule;
+use BrianRLewis\MagicAdmin\Modules\UtilsModule;
 
 class Magic
 {

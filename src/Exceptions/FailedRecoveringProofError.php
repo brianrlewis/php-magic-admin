@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminSDK\Exceptions;
+namespace BrianRLewis\MagicAdmin\Exceptions;
 
 class FailedRecoveringProofError extends MagicAdminSDKException
 {
