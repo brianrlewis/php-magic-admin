@@ -3,34 +3,36 @@
 namespace AdminSDK\Utils;
 
 use AdminSDK\Exceptions\MalformedTokenException;
+use AdminSDK\Types\Claim;
+use AdminSDK\Types\ParsedDIDToken;
 
 class DidT
 {
     public static function parseDIDToken(string $DIDToken): array
     {
         [$proof, $claim] = json_decode(base64_decode($DIDToken));
-        $parsedClaim = json_decode($claim, true);
+        $parsedClaim = new Claim(json_decode($claim, true));
         if (static::isDIDTClaim($parsedClaim)) {
             return [
                 'raw' =>  [$proof, $claim],
-                'withParsedClaim' => [$proof, $parsedClaim],
+                'withParsedClaim' => new ParsedDIDToken([$proof, $parsedClaim]),
             ];
         } else {
             throw new MalformedTokenException;
         }
     }
 
-    public static function isDIDTClaim($value): string
+    public static function isDIDTClaim(Claim $claim): bool
     {
         return
-            is_array($value) &&
-            isset($value['iat']) &&
-            isset($value['ext']) &&
-            isset($value['iss']) &&
-            isset($value['sub']) &&
-            isset($value['aud']) &&
-            isset($value['nbf']) &&
-            isset($value['tid']) &&
-            isset($value['add']);
+            is_object($claim) &&
+            isset($claim->iat) &&
+            isset($claim->ext) &&
+            isset($claim->iss) &&
+            isset($claim->sub) &&
+            isset($claim->aud) &&
+            isset($claim->nbf) &&
+            isset($claim->tid) &&
+            isset($claim->add);
     }
 }

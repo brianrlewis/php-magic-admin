@@ -4,6 +4,7 @@ namespace AdminSDK\Modules;
 
 use AdminSDK\Exceptions\ApiKeyMissingException;
 use AdminSDK\Modules\Core\BaseModule;
+use AdminSDK\Types\MagicUserMetadata;
 use AdminSDK\Utils\Issuer;
 use AdminSDK\Utils\Rest;
 
@@ -34,7 +35,7 @@ class Users extends BaseModule
         $this->logoutByIssuer($issuer);
     }
 
-    public function getMetadataByIssuer(string $issuer)
+    public function getMetadataByIssuer(string $issuer): MagicUserMetadata
     {
         if (! $this->sdk->secretApiKey) {
             throw new ApiKeyMissingException;
@@ -46,20 +47,16 @@ class Users extends BaseModule
             ['issuer' => $issuer]
         );
 
-        return [
-            'issuer' => $data['issuer'] ?? null,
-            'publicAddress' => $data['public_address'] ?? null,
-            'email' => $data['email'] ?? null,
-        ];
+        return new MagicUserMetadata($data);
     }
 
-    public function getMetadataByToken(string $DIDToken): array
+    public function getMetadataByToken(string $DIDToken): MagicUserMetadata
     {
         $issuer = $this->sdk->token->getIssuer($DIDToken);
         return $this->getMetadataByIssuer($issuer);
     }
 
-    public function getMetadataByPublicAddress(string $publicAddress): array
+    public function getMetadataByPublicAddress(string $publicAddress): MagicUserMetadata
     {
         $issuer = Issuer::generateIssuerFromPublicAddress($publicAddress);
         return $this->getMetadataByIssuer($issuer);

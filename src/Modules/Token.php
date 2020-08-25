@@ -8,6 +8,7 @@ use AdminSDK\Exceptions\MalformedTokenException;
 use AdminSDK\Exceptions\TokenCannotBeUsedYetException;
 use AdminSDK\Exceptions\TokenExpiredException;
 use AdminSDK\Modules\Core\BaseModule;
+use AdminSDK\Types\ParsedDIDToken;
 use AdminSDK\Utils\DidT;
 use AdminSDK\Utils\Eth;
 use AdminSDK\Utils\Issuer;
@@ -21,8 +22,9 @@ class Token extends BaseModule
             $tokenParseResult = DidT::parseDIDToken($DIDToken);
             [$proof, $claim] = $tokenParseResult['raw'];
             $parsedClaim = $tokenParseResult['withParsedClaim'][1];
-            $claimedIssuer = Issuer::parsePublicAddressFromIssuer($parsedClaim['iss']);
+            $claimedIssuer = Issuer::parsePublicAddressFromIssuer($parsedClaim->iss);
         } catch (Throwable $e) {
+            ilog($e);
             throw new MalformedTokenException;
         }
 
@@ -31,7 +33,7 @@ class Token extends BaseModule
             $tokenSigner = strtolower(Eth::ecRecover($claim, $proof));
 
             // Recover the attachment signer
-            $attachmentSigner = strtolower(Eth::ecRecover($attachment, $parsedClaim['add']));
+            $attachmentSigner = strtolower(Eth::ecRecover($attachment, $parsedClaim->add));
         } catch (Throwable $e) {
             throw new FailedRecoveringProofError;
         }
@@ -50,12 +52,12 @@ class Token extends BaseModule
         }
 
         // Assert the token is not used before allowed.
-        if ($parsedClaim['nbf'] - $nbfLeeway > $timeSecs) {
+        if ($parsedClaim->nbf - $nbfLeeway > $timeSecs) {
             throw new TokenCannotBeUsedYetException;
         }
     }
 
-    public function decode(string $DIDToken): array
+    public function decode(string $DIDToken): ParsedDIDToken
     {
         $parsedToken = DidT::parseDIDToken($DIDToken);
         return $parsedToken['withParsedClaim'];
@@ -64,12 +66,12 @@ class Token extends BaseModule
     public function getPublicAddress(string $DIDToken): string
     {
         $claim = $this->decode($DIDToken)[1];
-        $claimedIssuer = explode(':', $claim['iss'])[2];
+        $claimedIssuer = explode(':', $claim->iss)[2];
         return $claimedIssuer;
     }
 
     public function getIssuer(string $DIDToken): string
     {
-        return $this->decode($DIDToken)[1]['iss'];
+        return $this->decode($DIDToken)[1]->iss;
     }
 }
