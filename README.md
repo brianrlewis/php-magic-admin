@@ -37,29 +37,29 @@ $magic = new Magic($secretApiKey, $options);
 Token Module (https://docs.magic.link/admin-sdk/node#token-module)
 
 ```
-$magic->token->validate('<DIDToken>); 
+$magic->token->validate('<DIDToken>'); 
 
-$magic->token->getIssuer('<DIDToken>); 
+$magic->token->getIssuer('<DIDToken>'); 
 
-$magic->token->decode('<DIDToken>); 
+$magic->token->decode('<DIDToken>'); 
 
-$magic->token->getPublicAddress('<DIDToken>); 
+$magic->token->getPublicAddress('<DIDToken>'); 
 ```
 
 Users Module (https://docs.magic.link/admin-sdk/node#user-module)
 
 ```
-$magic->users->logoutByIssuer('<issuer>);
+$magic->users->logoutByIssuer('<issuer>');
 
-$magic->users->logoutByPublicAddress('<publicAddress>);
+$magic->users->logoutByPublicAddress('<publicAddress>');
 
-$magic->users->logoutByToken('<DIDToken>);
+$magic->users->logoutByToken('<DIDToken>');
 
-$metadata = $magic->users->getMetadataByIssuer('<issuer>);
+$metadata = $magic->users->getMetadataByIssuer('<issuer>');
 
-$metadata = $magic->users->getMetadataByPublicAddress('<publicAddress>);
+$metadata = $magic->users->getMetadataByPublicAddress('<publicAddress>');
 
-$metadata = $magic->users->getMetadataByToken('<DIDToken>);
+$metadata = $magic->users->getMetadataByToken('<DIDToken>');
 
 echo $metadata->email;
 echo $metadata->publicAddress;
