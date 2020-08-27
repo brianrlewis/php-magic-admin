@@ -2,7 +2,7 @@
 
 namespace BrianRLewis\MagicAdmin\Modules;
 
-use BrianRLewis\MagicAdmin\Exceptions\FailedRecoveringProofError;
+use BrianRLewis\MagicAdmin\Exceptions\FailedRecoveringProofException;
 use BrianRLewis\MagicAdmin\Exceptions\IncorrectSignerAddressException;
 use BrianRLewis\MagicAdmin\Exceptions\MalformedTokenException;
 use BrianRLewis\MagicAdmin\Exceptions\TokenCannotBeUsedYetException;
@@ -34,7 +34,7 @@ class TokenModule extends BaseModule
             // Recover the attachment signer
             $attachmentSigner = strtolower(Eth::ecRecover($attachment, $parsedClaim->add));
         } catch (Throwable $e) {
-            throw new FailedRecoveringProofError;
+            throw new FailedRecoveringProofException;
         }
 
         // Assert the expected signer

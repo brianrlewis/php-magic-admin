@@ -2,7 +2,7 @@
 
 namespace BrianRLewis\MagicAdmin\Exceptions;
 
-class FailedRecoveringProofError extends MagicAdminSDKException
+class FailedRecoveringProofException extends MagicAdminSDKException
 {
     public function __construct()
     {

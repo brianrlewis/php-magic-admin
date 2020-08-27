@@ -8,6 +8,12 @@ class BaseType
 
     public function toArray(): array
     {
-        return $this->data;
+        return array_map(function ($value) {
+            if ($value instanceof self) {
+                return $value->toArray();
+            } else {
+                return $value;
+            }
+        }, $this->data);
     }
 }
