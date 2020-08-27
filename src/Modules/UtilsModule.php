@@ -12,7 +12,7 @@ class UtilsModule extends BaseModule
      */
     public function parseAuthorizationHeader(string $header): string
     {
-        if (substr($header, 0, 7) !== 'bearer ') {
+        if (substr(strtolower($header), 0, 7) !== 'bearer ') {
             throw new ExpectedBearerStringException;
         }
 
