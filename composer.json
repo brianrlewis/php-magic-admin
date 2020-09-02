@@ -2,7 +2,7 @@
     "name": "brianrlewis/magic-admin",
     "description": "Unofficial implementation of Magic Admin SDK specification",
     "type": "library",
-    "keywords": ["magic", "link", "fortmatic", "admin", "api", "sdk"],
+    "keywords": ["magic", "link", "fortmatic", "admin", "api", "sdk", "passwordless", "authentication"],
     "require": {
         "php": ">=7.1.0",
         "simplito/elliptic-php": "^1.0",
