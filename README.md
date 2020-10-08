@@ -12,6 +12,10 @@ This package has not undergone rigorous testing so use with caution.
 
 This is a server side package that is intended for use in conjunction with one of the official client SDKs (https://docs.magic.link/client-sdk/web) provided by Magic.
 
+## Laravel
+
+If your application uses Laravel then you should use [laravel-magic-admin](https://github.com/brianrlewis/laravel-magic-admin) instead of this package.
+
 ## Installation
 
 Run this command to install via composer.
