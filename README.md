@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This package has been deprecated in favor of the [official version](https://github.com/magiclabs/magic-admin-php).
+
 # Magic Admin SDK
 
 This package is an unofficial implementation of the Magic Admin SDK specification.
